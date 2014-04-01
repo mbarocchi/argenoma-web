@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('argenomaWebApp')
-  .controller('MainCtrl', function ($scope) {
-    
-  });
+	.controller('MainCtrl', ['$scope',
+		function($scope) {
+
+		}
+	]);

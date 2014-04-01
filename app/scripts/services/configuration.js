@@ -1,14 +1,17 @@
 'use strict';
 
 angular.module('argenomaWebApp')
-  .service('Configuration', function($http) {
-    var get = function(itemType) {
-      return $http({
-        url: '/data/config_' + itemType + '.json',
-        method: 'GET'
-      });
-    };
-    return {
-      get: get
-    };
+  .provider('Configuration', function() {
+    // Method for instantiating
+    this.$get = ['$resource',
+      function($resource) {
+        var Config = $resource('http://www.argenoma.com/api/api.php', {}, {
+          update: {
+            method: 'PUT'
+          }
+        })
+
+        return Config;
+      }
+    ];
   });
